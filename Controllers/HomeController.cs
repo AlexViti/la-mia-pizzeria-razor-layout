@@ -18,6 +18,41 @@ namespace la_mia_pizzeria_static.Controllers
             return View();
         }
 
+        [Route("menu")]
+        public IActionResult Menu()
+        {
+            ViewData["Title"] = "Menu";
+            ViewData["Pizze"] =  new List<Pizza>()
+            {
+                new("Margherita", "Pomodoro, mozzarella, basilico", 9.99m, "img/margherita.png"),
+                new("Prosciutto", "Pomodoro, mozzarella, prosciutto", 10.99m, "img/prosciutto.png"),
+                new("Bufalina", "Pomodoro ciliegino, mozarella di bufala, olive", 11.99m, "img/bufalina.jpg"),
+                new("Calzone", "Pomodoro, mozzarella, prosciutto", 12.99m, "https://www.pizzaventura.com/wp-content/uploads/2020/03/calzone.jpg")
+            };
+            return View();
+        }
+
+        [Route("dove-siamo")]
+        public IActionResult DoveSiamo()
+        {
+            ViewData["Title"] = "Dove Siamo";
+            return View();
+        }
+
+        [Route("contatti")]
+        public IActionResult Contatti()
+        {
+            ViewData["Title"] = "Contatti";
+            return View();
+        }
+
+        [Route("prenota")]
+        public IActionResult Prenota()
+        {
+            ViewData["Title"] = "Prenota";
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
