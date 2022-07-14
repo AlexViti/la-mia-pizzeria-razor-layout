@@ -21,25 +21,20 @@ Stampare dentro uno span il risultato.
         int Sommatoria(int n) => n < 2 ? 1 : Sommatoria(n - 1) + n;
     }
     <li>
+        La sommatoria di 10 è: 
         <span>@Sommatoria(10)</span>
     </li>
 
 @*
 3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina
 *@
-@{
-    string frase = "nel mezzo del cammin di nostra vita";
-    int a = 0;
-    for (int i = 0; i < frase.Length; i++)
-    {
-        if (frase[i] == 'a')
-        {
-            a++;
-        }
+    @{
+        string frase = "nel mezzo del cammin di nostra vita";
+        int a = 0;
+        frase.ToList().ForEach(c => { if (c == 'a') a++; });
     }
-}
     <li>
-        <div>@a</div>
+        Nella frase "@frase" la lettera 'a' è contenuta <strong>@a</strong> volte
     </li>
 @*
 4. Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70
@@ -51,7 +46,8 @@ Stampare dentro uno span il risultato.
         lista.Add(new Random().Next(1, 91));
     }
 }
-    <li>      
+    <li>
+        In una lista di 20 numeri casuali generati fra 1 e 90 i numeri compresi fra 20 e 70 inclusi sono:
         <ul>
             @foreach(int n in lista)
             {
@@ -69,7 +65,7 @@ Stampare dentro uno span il risultato.
         DateTime data = DateTime.Now;
     }
     <li>
-        @data.ToString("yyyy-MM-dd hh:mm:ss")
+        Adesso è: <strong>@data.ToString("yyyy-MM-dd HH:mm:ss")</strong>
     </li>
 @*  
 6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
@@ -80,13 +76,14 @@ c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un
     <li>
         <ol style="list-style-type:lower-latin">
             <li>
-                @data.AddDays(-7).ToString("dd/MM/yyyy")
+                7 giorni fa era il 
+                @data.AddDays(-7).ToString("d MMMM yy")
             </li>
             <li>
-                @data.DayOfWeek.ToString()
+                Oggi è @data.ToString("dddd")
             </li>
             <li>
-                @data.AddYears(1).DayOfWeek.ToString()
+                Fra un anno sarà @data.AddYears(1).ToString("dddd")
             </li>
         </ol>
     </li>
