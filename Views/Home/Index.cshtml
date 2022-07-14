@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    List<Pizza> pizzas = new()
+    {
+        new("Margherita", "Pomodoro, mozzarella, basilico", 9.99m, "img/margherita.png"),
+        new("Prosciutto", "Pomodoro, mozzarella, prosciutto", 10.99m, "img/prosciutto.png"),
+        new("Bufalina", "Pomodoro ciliegino, mozarella di bufala, olive", 11.99m, "img/bufalina.jpg"),
+        new("Calzone", "Pomodoro, mozzarella, prosciutto", 12.99m, "https://www.pizzaventura.com/wp-content/uploads/2020/03/calzone.jpg")
+    };
+}
+
+<div class="text-center">
+    <h1 class="display-1 mb-3">LE NOSTRE PIZZE</h1>
+    <div class="container">
+        <ul class="list-unstyled row g-4">
+            @foreach (Pizza pizza in pizzas)
+            {
+                <li class="col col-6 col-md-4 col-lg-3">
+                    <div class="card h-100 p-2 flex-column">
+                        <h2>@pizza.Name</h2>
+                        <div>@pizza.Description</div>
+                        <img class="img-fluid" src="@pizza.ImageUrl" alt="@pizza.Name" />
+                        <div class="fw-bolder fs-3 mt-auto">@pizza.GetPrice()</div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+            
