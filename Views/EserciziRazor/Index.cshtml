@@ -1,0 +1,93 @@
+﻿@*
+1. Dichiarare una variabile valorizzandola con il nostro nome.
+Dichiarare un'altra variabile valorizzandola con il nostro cognome.
+Stampare il nostro nome e cognome all'interno di un tag h2.
+*@
+@{
+    Layout = null;
+    
+    string nome = "Alessio";
+    string cognome = "Vitiello";
+}
+<ol>
+    <li>
+        <h2>@nome @cognome</h2>
+    </li>
+@*
+2. Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso)
+Stampare dentro uno span il risultato.
+*@
+    @{
+        int Sommatoria(int n) => n < 2 ? 1 : Sommatoria(n - 1) + n;
+    }
+    <li>
+        <span>@Sommatoria(10)</span>
+    </li>
+
+@*
+3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina
+*@
+@{
+    string frase = "nel mezzo del cammin di nostra vita";
+    int a = 0;
+    for (int i = 0; i < frase.Length; i++)
+    {
+        if (frase[i] == 'a')
+        {
+            a++;
+        }
+    }
+}
+    <li>
+        <div>@a</div>
+    </li>
+@*
+4. Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70
+*@
+@{
+    List<int> lista = new List<int>();
+    for (int i = 0; i < 20; i++)
+    {
+        lista.Add(new Random().Next(1, 91));
+    }
+}
+    <li>      
+        <ul>
+            @foreach(int n in lista)
+            {
+                if (n >= 20 && n <= 70)
+                {
+                    <li>@n</li>
+                }
+            }
+        </ul>
+    </li>
+@*
+5. Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi
+*@
+    @{
+        DateTime data = DateTime.Now;
+    }
+    <li>
+        @data.ToString("yyyy-MM-dd hh:mm:ss")
+    </li>
+@*  
+6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
+a. la data di 7 giorni fa
+b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+*@
+    <li>
+        <ol style="list-style-type:lower-latin">
+            <li>
+                @data.AddDays(-7).ToString("dd/MM/yyyy")
+            </li>
+            <li>
+                @data.DayOfWeek.ToString()
+            </li>
+            <li>
+                @data.AddYears(1).DayOfWeek.ToString()
+            </li>
+        </ol>
+    </li>
+</ol>
